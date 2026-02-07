@@ -134,13 +134,18 @@ const TasksPage = () => {
                 <Button
                     variant="ghost"
                     onClick={handleLogout}
-                    className="flex items-center gap-2 text-muted-foreground hover:text-destructive"
+                    className="
+      flex items-center gap-2
+      text-black/70
+      transition-colors
+      hover:bg-primary
+      hover:text-white
+    "
                 >
                     <LogOut className="h-4 w-4" />
                     Logout
                 </Button>
             </div>
-
             {/* Main container */}
             <div className="relative mx-auto max-w-6xl px-4 pt-20 pb-12">
                 {/* Header */}
