@@ -108,7 +108,7 @@ const TasksPage = () => {
             const message = await logoutUser();
             toast.success(message);
             navigate("/login");
-        } catch (error) {
+        } catch {
             toast.error("Failed to logout");
         }
     };
