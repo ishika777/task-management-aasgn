@@ -5,9 +5,9 @@ import {
   updateTask,
   updateTaskStatus,
   deleteTask,
-} from "@/controllers/Task.controller.js";
+} from "../controllers/Task.controller.js";
 
-import { authoriseUser } from "@/utils/auth.middleware.js";
+import { authoriseUser } from "../utils/auth.middleware.js";
 
 const router = express.Router();
 
