@@ -60,7 +60,7 @@ export function TaskDrawer({
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange} direction="right">
-      <DrawerContent className="h-full w-[420px] ml-auto rounded-none border-l bg-background">
+      <DrawerContent className="h-full w-105 ml-auto rounded-none border-l bg-background">
         {/* Header */}
         <DrawerHeader className="space-y-2 border-b px-6 py-6">
           <DrawerTitle className="text-2xl font-semibold tracking-tight">
