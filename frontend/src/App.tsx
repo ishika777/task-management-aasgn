@@ -1,18 +1,25 @@
-// import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom'
+import Landing from '@/pages/Landing'
+import TasksPage from './pages/TasksPage'
+import Signup from './pages/SignUp'
+import Login from './pages/Login'
+import NotFound from './pages/NotFound'
+import './App.css'
 
-export default function AppRoutes() {
 
-//     const apiUrl = import.meta.env.VITE_API_URL;
-// const appName = import.meta.env.VITE_APP_NAME;
-
+function App() {
 
   return (
-
-    <h1>Shadcn + Tailwind + react-router-dom + env files</h1>
-    // <Routes>
-    //   <Route path="/" element={<Home />} />
-    //   <Route path="/login" element={<Login />} />
-    //   <Route path="*" element={<NotFound />} /> 
-    // </Routes>
-  );
+    <>
+        <Routes>
+            <Route path="" element={<Landing />} />
+            <Route path="/tasks" element={<TasksPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="*" element={<NotFound />} />
+        </Routes>
+    </>
+  )
 }
+
+export default App
