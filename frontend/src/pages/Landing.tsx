@@ -78,7 +78,7 @@ export default function Landing() {
             {/* CTA */}
             <section className="mt-36 px-6 pb-24">
                 <div className="max-w-4xl mx-auto rounded-2xl border bg-card px-8 py-16 text-center relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-br from-primary/10 to-transparent" />
 
                     <h3 className="relative text-3xl sm:text-4xl font-semibold">
                         Ready to be more productive?
