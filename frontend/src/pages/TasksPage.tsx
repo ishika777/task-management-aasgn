@@ -15,11 +15,11 @@ import {
 import { toast } from "sonner";
 import { logoutUser } from "@/lib/user.api";
 import { useNavigate } from "react-router-dom";
+import Loader from "@/components/Loader";
 
-/* -------------------- types -------------------- */
-type TaskFilter = "all" | "pending" | "completed";
+type TaskFilter = "all" | "pending" | "in-progress" | "completed";
 
-/* -------------------- component -------------------- */
+
 const TasksPage = () => {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [loading, setLoading] = useState(true);
@@ -38,11 +38,12 @@ const TasksPage = () => {
 
     const filteredTasks = tasks.filter((task) => {
         if (filter === "completed") return task.status === "Completed";
-        if (filter === "pending") return task.status !== "Completed";
+        if (filter === "in-progress") return task.status === "In-Progress";
+        if (filter === "pending") return task.status !== "Completed" && task.status !== "In-Progress";
         return true;
     });
 
-    /* -------------------- effects -------------------- */
+
     useEffect(() => {
         const fetchAllTasks = async () => {
             const res = await getAllTasks();
@@ -186,7 +187,7 @@ const TasksPage = () => {
                 {!loading && tasks.length > 0 && (
                     <div className="mb-10 flex justify-center">
                         <div className="inline-flex rounded-xl border bg-orange-50/70 p-2">
-                            {(["all", "pending", "completed"] as TaskFilter[]).map(
+                            {(["all", "pending", "in-progress", "completed"] as TaskFilter[]).map(
                                 (value) => (
                                     <Button
                                         key={value}
@@ -195,10 +196,11 @@ const TasksPage = () => {
                                         onClick={() => setFilter(value)}
                                         className="capitalize rounded-lg mx-2"
                                     >
-                                        {value}
+                                        {value === "in-progress" ? "In Progress" : value}
                                     </Button>
                                 )
                             )}
+
                         </div>
                     </div>
                 )}
@@ -206,9 +208,7 @@ const TasksPage = () => {
                 {/* Task List */}
                 {loading ? (
                     <div className="text-center py-20">
-                        <p className="text-muted-foreground text-lg">
-                            Loading tasks...
-                        </p>
+                        <Loader />
                     </div>
                 ) : filteredTasks.length > 0 ? (
                     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -224,13 +224,16 @@ const TasksPage = () => {
                     </div>
                 ) : (
                     <div className="text-center py-20">
-                        <p className="text-muted-foreground text-lg mb-6">
+                        <p className="mx-auto max-w-md text-center text-lg font-medium text-muted-foreground leading-relaxed tracking-tight">
                             {filter === "completed"
-                                ? "No completed tasks yet."
-                                : filter === "pending"
-                                    ? "No pending tasks. Nice work!"
-                                    : "No tasks yet. Time to add some! 🚀"}
+                                ? "No completed tasks yet. Finish one and it’ll show up here."
+                                : filter === "in-progress"
+                                    ? "No tasks in progress. Pick one and get moving."
+                                    : filter === "pending"
+                                        ? "No pending tasks. Looks like you’re all caught up!"
+                                        : "No tasks yet. Time to add your first one 🚀"}
                         </p>
+
 
                         {filter === "all" && (
                             <Button size="lg" onClick={handleOpenDrawer}>

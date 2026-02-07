@@ -39,7 +39,6 @@ export function TaskCard({ task, onUpdate, onDelete, onStatusChange }: {
                             className="h-8 w-8"
                         >
                             <Pencil className="h-4 w-4" />
-                            <span className="sr-only">Update task</span>
                         </Button>
 
 

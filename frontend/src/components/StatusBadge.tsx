@@ -76,7 +76,18 @@ const StatusBadge = ({ task, onStatusChange }: {
                         const item = statusConfig[status];
 
                         return (
-                            <SelectItem key={status} value={status}>
+                            <SelectItem
+                                key={status}
+                                value={status}
+                                className="
+    bg-transparent
+    hover:bg-transparent
+    focus:bg-transparent
+    data-highlighted:bg-transparent
+    data-[state=checked]:bg-transparent
+    cursor-pointer
+  "
+                            >
                                 <Badge
                                     variant={item.variant}
                                     className={item.className}
@@ -84,6 +95,7 @@ const StatusBadge = ({ task, onStatusChange }: {
                                     {item.label}
                                 </Badge>
                             </SelectItem>
+
                         );
                     }
                 )}
